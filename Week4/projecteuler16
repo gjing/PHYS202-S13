@@ -1,0 +1,89 @@
+{
+ "metadata": {
+  "name": "projecteuler16"
+ },
+ "nbformat": 3,
+ "nbformat_minor": 0,
+ "worksheets": [
+  {
+   "cells": [
+    {
+     "cell_type": "markdown",
+     "metadata": {},
+     "source": [
+      "Power digit sum\n",
+      "=\n",
+      "Problem 16\n",
+      "-\n",
+      "$2^{15}$ = 32768 and the sum of its digits is 3 + 2 + 7 + 6 + 8 = 26.\n",
+      "\n",
+      "What is the sum of the digits of the number $2^{1000}$?"
+     ]
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "a = 2**15\n",
+      "print \"2^15 = \" + str(a)\n",
+      "b=0\n",
+      "while a>0:\n",
+      "    digit = a%10\n",
+      "    b += digit\n",
+      "    a /= 10\n",
+      "print \"The Sum of the digits is \" + str(b)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "$2^15$ = 32768\n",
+        "The Sum of the digits is 26\n"
+       ]
+      }
+     ],
+     "prompt_number": 11
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [
+      "a = 2**1000\n",
+      "print \"2^1000 = \" + str(a)\n",
+      "b=0\n",
+      "while a>0:\n",
+      "    digit = a%10\n",
+      "    b += digit\n",
+      "    a /= 10\n",
+      "print \"The Sum of the digits is \" + str(b)"
+     ],
+     "language": "python",
+     "metadata": {},
+     "outputs": [
+      {
+       "output_type": "stream",
+       "stream": "stdout",
+       "text": [
+        "2^1000 = 10715086071862673209484250490600018105614048117055336074437503883703510511249361224931983788156958581275946729175531468251871452856923140435984577574698574803934567774824230985421074605062371141877954182153046474983581941267398767559165543946077062914571196477686542167660429831652624386837205668069376\n",
+        "The Sum of the digits is 1366\n"
+       ]
+      }
+     ],
+     "prompt_number": 12
+    },
+    {
+     "cell_type": "code",
+     "collapsed": false,
+     "input": [],
+     "language": "python",
+     "metadata": {},
+     "outputs": []
+    }
+   ],
+   "metadata": {}
+  }
+ ]
+}
