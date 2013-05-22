@@ -1,4 +1,4 @@
-Project 2: One-dimensional traffic flows
+Project 4: 3-D Pattern Recognition
 =
 George Jing
 -
