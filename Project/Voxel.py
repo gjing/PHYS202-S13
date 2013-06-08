@@ -7,4 +7,4 @@ class Voxel:
         self.bucket = float(data.split(' ')[3])
         self.ADC = float(data.split(' ')[4])
     def getGradient(self, other):
-        return (self.ADC - other.ADC)/((self.row-other.row)**2 + (self.column-other.columm)**2)
+        return (self.ADC - other.ADC)/((self.row-other.row)**2 + (self.column-other.column)**2)
