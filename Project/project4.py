@@ -1,5 +1,12 @@
 #George Jing
 #3-D Pattern Recognition
+"""For this project, you will construct a 3D hexagonal geometry edge finding algorithm that
+can combine individual voxels from NIFFTE events fission into connected trajectories.
+Once the trajectories have been determined, you will produce a 3D visualization of the
+events using Matplotlib's mplot3d, with the different trajectories color-coded. You will
+also keep track of how many tracks are found per event, how many voxels go unused or
+unconnected to a trajectory and generate histograms of these variables to quantify the
+performance of your algorithm"""
 
 import math
 import numpy as np
@@ -23,6 +30,7 @@ class Event:
         self.pool = self.data
         self.tracks = []
     def rawGraph(self):
+        """graphs all the points in the event"""
         fig = figure()
         ax = fig.gca(projection='3d')
         eventRow = []
@@ -51,20 +59,11 @@ class Event:
             else:
                 self.tracks.append(t)
                 t = []
-    def setTracks(self,cutoff):
-        """moves points from tracks from the tracks array of length less than 3 to the pool, no longer used"""
-        self.rawTracks(cutoff)
-        for track in self.tracks:
-            if len(track)<3:
-                for t in track:
-                    self.pool.append(t)
-                self.tracks.remove(track)
-        self.pool = sorted(self.pool, key=lambda Voxel: Voxel.ADC)[::-1]
     def graphEvent(self, cutoff, orphans):
+		"""graphs the tracks and orphans, also sets the number of orphans and tracks doesn't work properly"""
         self.orphans = 0
         self.trackNum = 0
         self.rawTracks(cutoff)
-        """graphs the tracks and orphans"""
         fig = figure()
         ax = fig.gca(projection='3d')
         eventPoolRow = []
@@ -95,7 +94,8 @@ class Event:
         plt.show()
 
 def project4(cutoff, orphans):
-    """makes an array of event objects, graphs them all, and shows the number of orphans and tracks"""
+    """All the events are graphed and stores the number of tracks and orphans per event in the event objects,
+        then graphs 2 bar graphs, one for the number of tracks per event and one for the number of orphans per event"""
     niffte = open("niffte_data.txt", 'r')
     line = niffte.readline()
     line = niffte.readline()
@@ -118,7 +118,7 @@ def project4(cutoff, orphans):
         event.graphEvent(cutoff,orphans)
         orphans.append(event.orphans)
         tracks.append(event.trackNum)
-    subplot(2,1,2)
+    subplot(3,1,3)
     bar(x,orphans)
     title('Orphans')
     xlabel('Event')
@@ -132,3 +132,15 @@ def project4(cutoff, orphans):
 orphans = input("Show Orphans (True/False): ");
 cutoff = input("Enter a cutoff value: ");
 project4(cutoff,orphans)
+
+"""
+How does your result depend on the cutoff value for the gradient?
+The number of tracks and orphans increases as the cutoff value decreases
+
+What additional tricks or tests could you add to your program to improve the efficiency?
+Probably some way of getting the number of tracks of each event without having to calculate everything first.
+"""
+
+"""
+References used: The Python and matplotlib documentation
+"""
